@@ -1,6 +1,6 @@
 const { test } = require('@playwright/test');
 require('dotenv').config(); 
-const MongoUtils = require('./utils/mongoUtils');
+const MongoUtils = require('./utils/MongoUtils');
 
 test.only('Fetch patient record from MongoDB', async () => {
   const mongo = new MongoUtils(process.env.MONGO_URI, "qa-cls5");
@@ -16,7 +16,13 @@ test.only('Fetch patient record from MongoDB', async () => {
   console.log("Patient Doc:", doc);
 
   const docPatientsList = await collection.find({patient_id: "1000"}).toArray();
-  console.log("patientList = " +docPatientsList);
+  console.log("patientList = " +docPatientsList.toString());
+
+  const patientZero = docPatientsList[0].toString();
+  console.log("patientZero = "+patientZero);
+
+  const patientZero2 = JSON.stringify(docPatientsList[0]);
+  console.log("patientZero = "+patientZero2);
 
   for(const patient of docPatientsList){
     console.log("Patient: ", patient.name);
