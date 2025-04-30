@@ -5,19 +5,16 @@ test('Browser Context Playwright Test', async ({browser}) =>
 {
 const context = await browser.newContext();
 const page = await context.newPage();
-await page.goto ("https://staging.retrace.ai");
+await page.goto (process.env(URL));
 await page.waitForTimeout(50000);
 });
 
 
-test('Page Playwright Test', async ({page}) =>
-{
-await page.goto ("https://staging.retrace.ai");
+test('Page Playwright Test', async ({page}) => {
+await page.goto (process.env.URL);
 console.log(await page.title)
 await expect(page).toHaveTitle("Login")
 // await page.waitForTimeout(50000);
-// Su1eym@n.
-// suleyman+testsuper@retrace.ai
 
 const partnerName = "qa-cls5"
 const practiceName = "CLS2"
@@ -30,10 +27,6 @@ await page.getByPlaceholder("Enter the Partner ID").fill(partnerName)
 
 await page.getByRole( "button", {name:'Login'} ).click()
 await page.waitForTimeout(3000);
-// await expect(page).toHaveTitle("Home")
-// await page.locator("[placeholder='Enter your email address']").fill('suleyman+testsuper@retrace.ai')
-
-// await page.locator('index [placeholder="Enter your password"]').fill('Su1eym@n.')
 
 // check practice name is correct 
 const practiceExisting = await page.locator("._practice_name_13kkp_123").textContent();

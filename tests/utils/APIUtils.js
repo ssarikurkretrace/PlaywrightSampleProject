@@ -8,7 +8,7 @@ class APIUtils{
     }
 
     async generateToken(){
-        const tokenResponse = await this.apiContext.post("https://staging.retrace.ai/api/request_json_web_token", {
+        const tokenResponse = await this.apiContext.post(process.env.APITOKENURI, {
             headers: {
                 'User-Agent': 'test',
                 'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ class APIUtils{
         const generatedLoginPayload = this.createLoginPayload(partner);
         // console.log("generatedLoginPayload ="+generatedLoginPayload);
 
-        const tokenResponse = await this.apiContext.post("https://staging.retrace.ai/api/request_json_web_token", {
+        const tokenResponse = await this.apiContext.post(process.env.APITOKENURI, {
             headers: {
                 'User-Agent': 'test',
                 'Content-Type': 'application/json',
@@ -41,8 +41,8 @@ class APIUtils{
 
     createLoginPayload(partner) {
         return {
-          user: "suleyman+testsuper@retrace.ai",
-          password: "Su1eym@n.",
+          user: process.env.SUPERUSER,
+          password: process.env.SUPERPASS,
           expiresIn: 100,
           partnerId: partner,
         };
@@ -55,7 +55,7 @@ class APIUtils{
         // console.log("token = "+token);
 
         const apiContext2 = await request.newContext({
-            baseURL: 'https://staging.retrace.ai', 
+            baseURL: process.env.URL, 
             ignoreHTTPSErrors: true,
             extraHTTPHeaders: {
             Authorization: token,
