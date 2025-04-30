@@ -17,4 +17,9 @@ A modern test automation framework using Playwright for **UI**, **API**, and **d
   - MySQL/MongoDB Connectors
   - Jest/Playwright Test Runner
 
-## 📂 Project Structure
+## 📦 Purpose
+
+> Provide a **zero-config**, fast, and reliable automation framework with real-world examples.  
+> Designed for **cross-browser testing**, **CI/CD integration**, and **multi-layer validation**.
+
+---
