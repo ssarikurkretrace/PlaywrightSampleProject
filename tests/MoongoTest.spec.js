@@ -1,6 +1,6 @@
 const { test } = require('@playwright/test');
 require('dotenv').config(); 
-const MongoUtils = require('./utils/MongoUtils');
+const MongoUtils = require('./utils/MoongoUtils');
 
 test.only('Fetch patient record from MongoDB', async () => {
   const mongo = new MongoUtils(process.env.MONGO_URI, "qa-cls5");
