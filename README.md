@@ -8,7 +8,7 @@ A modern test automation framework using Playwright for **UI**, **API**, and **d
 ## 🌟 Features
 
 - **Multi-Layer Testing**:
-  - ✅ UI Tests (e.g., `UiBaiictiest_spec.js`)
+  - ✅ UI Tests (e.g., `UiBasicstest_spec.js`)
   - ✅ API Utilities (Mocking/Validation)
   - ✅ Database Integrations (MySQL, MongoDB)
   
