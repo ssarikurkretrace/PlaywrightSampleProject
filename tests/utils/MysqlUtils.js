@@ -1,4 +1,5 @@
 const mysql = require('mysql2/promise');
+const fs = require('fs');
 
 class MysqlUtils {
   constructor() {
@@ -53,6 +54,98 @@ class MysqlUtils {
       console.log("🔌 MySQL connection closed.");
     }
   }
+
+  async getQueryResultList(query) {
+    const [rows] = await this.connection.execute(query);
+    return rows.map(row => Object.values(row));
+  }
+
+  async getQueryResultMap(query) {
+    const [rows] = await this.connection.execute(query);
+    return rows;
+  }
+
+  async getCellValue(query) {
+    const [rows] = await this.connection.execute(query);
+    return rows.length > 0 ? Object.values(rows[0])[0] : null;
+  }
+
+  async getRowList(query) {
+    const [rows] = await this.connection.execute(query);
+    return rows.length > 0 ? Object.values(rows[0]) : [];
+  }
+
+  async getRowMap(query) {
+    const [rows] = await this.connection.execute(query);
+    return rows.length > 0 ? rows[0] : {};
+  }
+
+  async getColumnData(query, column) {
+    const [rows] = await this.connection.execute(query);
+    return rows.map(row => row[column]);
+  }
+
+  async getColumnStrData(query, column) {
+    const [rows] = await this.connection.execute(query);
+    return rows.map(row => String(row[column]));
+  }
+
+  async getColumnNames(query) {
+    const [rows, fields] = await this.connection.execute(query);
+    return fields.map(field => field.name);
+  }
+
+  async getRowCount(query) {
+    const [rows] = await this.connection.execute(query);
+    return rows.length;
+  }
+
+  async queryExecuter(query) {
+    try {
+      await this.connection.execute(query);
+      console.log("✅ MySQL Query Executed Successfully");
+    } catch (error) {
+      console.error("❌ Query execution failed:", error.message);
+    }
+  }
+
+  async batchQueryExecuter(queries) {
+    for (const query of queries) {
+      try {
+        await this.connection.execute(query);
+        console.log("✅ Executed:", query);
+      } catch (e) {
+        console.error("❌ Failed:", query, e.message);
+      }
+    }
+  }
+
+  async createDB(dbName) {
+    await this.connection.execute(`CREATE DATABASE ${dbName}`);
+    console.log(`✅ Database ${dbName} created successfully...`);
+  }
+
+  async dropDB(dbName) {
+    await this.connection.execute(`DROP DATABASE ${dbName}`);
+    console.log(`✅ Database ${dbName} dropped successfully...`);
+  }
+
+  async importDB(filePath) {
+    try {
+      const sql = fs.readFileSync(filePath, 'utf8');
+      const commands = sql.split(';').filter(cmd => cmd.trim());
+      for (const cmd of commands) {
+        await this.connection.execute(cmd);
+      }
+      console.log("✅ Database imported successfully...");
+    } catch (err) {
+      console.error("❌ DB import failed:", err.message);
+    }
+  }
+
+
+
+
 }
 
 module.exports = new MysqlUtils();
