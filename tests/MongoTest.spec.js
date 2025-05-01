@@ -1,9 +1,9 @@
 const { test } = require('@playwright/test');
 require('dotenv').config(); 
-const MongoUtils = require('./utils/MongoUtils');
+const mongoUtils = require('./utils/MongoUtils');
 
 test('Fetch patient record from MongoDB', async () => {
-  const mongo = new MongoUtils(process.env.MONGO_URI, process.env.TESTPARTNER);
+  const mongo = new mongoUtils(process.env.MONGO_URI, process.env.TESTPARTNER);
 
   await mongo.connect();
 
