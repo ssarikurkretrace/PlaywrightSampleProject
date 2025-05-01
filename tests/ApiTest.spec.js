@@ -9,7 +9,7 @@ const loginPayLoad = {
 
 let response;
 let token;
- test.only('Generate Token', async ()=>{
+ test('Generate Token', async ()=>{
 
     const apiContext = await request.newContext({
         ignoreHTTPSErrors: true // ← this line fixes the SSL error

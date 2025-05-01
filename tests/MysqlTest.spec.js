@@ -1,5 +1,12 @@
 const {test} = require ('@playwright/test');
 require('dotenv').config();
-const sqlUtils = require('./utils/MysqlUtils');
+const mysqlUtils = require('./utils/MysqlUtils');
 
+test.only('Fetch data from MySQL', async () => {
+  await mysqlUtils.createConnection(process.env.MYSQL_IP, process.env.MYSQL_DBNAME, process.env.MYSQL_USER, process.env.MYSQL_PASS);
+  
+  const results = await mysqlUtils.runQuery('SELECT * FROM patient WHERE PatNum = 1621', [1]);
+  console.log(results);
 
+  await mysqlUtils.closeConnection();
+});
