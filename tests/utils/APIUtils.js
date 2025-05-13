@@ -1,13 +1,13 @@
 
-const {test, expect, request} = require('@playwright/test');
-class APIUtils{
+const { test, expect, request } = require('@playwright/test');
+class APIUtils {
 
     constructor(apiContext, loginPayLoad) {
         this.apiContext = apiContext;
         this.loginPayLoad = loginPayLoad;
     }
 
-    async generateToken(){
+    async generateToken() {
         const tokenResponse = await this.apiContext.post(process.env.APITOKENURI, {
             headers: {
                 'User-Agent': 'test',
@@ -21,7 +21,7 @@ class APIUtils{
         return token;
     }
 
-    async generateToken2(partner){
+    async generateToken2(partner) {
 
         const generatedLoginPayload = this.createLoginPayload(partner);
         // console.log("generatedLoginPayload ="+generatedLoginPayload);
@@ -32,7 +32,7 @@ class APIUtils{
                 'Content-Type': 'application/json',
             },
             data: generatedLoginPayload
-        }); 
+        });
         const tokenResponseJson = await tokenResponse.json();
         const token = `Bearer ${tokenResponseJson.token}`;
         // console.log("generateToken2 result = "+token);
@@ -41,25 +41,25 @@ class APIUtils{
 
     createLoginPayload(partner) {
         return {
-          user: process.env.SUPERUSER,
-          password: process.env.SUPERPASS,
-          expiresIn: 100,
-          partnerId: partner,
+            user: process.env.SUPERUSER,
+            password: process.env.SUPERPASS,
+            expiresIn: 100,
+            partnerId: partner,
         };
-      }
+    }
 
-    async getPatientData(partner, practice, patient){
+    async getPatientData(partner, practice, patient) {
 
-        console.log("partner = " +partner);
-        const token = await this.generateToken2(partner); 
+        console.log("partner = " + partner);
+        const token = await this.generateToken2(partner);
         // console.log("token = "+token);
 
         const apiContext2 = await request.newContext({
-            baseURL: process.env.URL, 
+            baseURL: process.env.URL,
             ignoreHTTPSErrors: true,
             extraHTTPHeaders: {
-            Authorization: token,
-            'User-Agent': 'test',
+                Authorization: token,
+                'User-Agent': 'test',
             },
         });
 
@@ -73,7 +73,7 @@ class APIUtils{
         // console.log(json);
         // console.log(json.primary_provider.first_name);
         // console.log(json.first_name);
-        return json; 
+        return json;
 
     }
 
