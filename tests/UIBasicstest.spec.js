@@ -5,7 +5,7 @@ test('Browser Context Playwright Test', async ({browser}) =>
 {
 const context = await browser.newContext();
 const page = await context.newPage();
-await page.goto (process.env(URL));
+await page.goto (process.env.URL);
 await page.waitForTimeout(50000);
 });
 
