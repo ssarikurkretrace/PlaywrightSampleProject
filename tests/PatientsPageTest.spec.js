@@ -23,17 +23,16 @@ test.only('Patients Page Test', async ({page}) => {
     //Navigate to patients page
     await loginPage.patientTabLoc.click();
 
+    //enter patient name
     await loginPage.patientSearchBox.fill("Ave")
+
+    //select patient from dropdown
     await loginPage.patientNameDropdown.click()
 
 
 
-    await page.pause();
-
     // await page.pause();
 
-
-    // select correct practice
 
 
 });
