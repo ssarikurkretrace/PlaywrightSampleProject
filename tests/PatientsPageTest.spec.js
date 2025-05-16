@@ -11,32 +11,20 @@ test.only('Patients Page Test', async ({page}) => {
     await expect(page).toHaveTitle("Login")
 
     const partnerName = "qa-cls5"
-    // const practiceName = "CLS2"
-    const practiceName = "Headquarters"
+    const practiceName = "CLS2"
+    // const practiceName = "Headquarters"
 
     await loginPage.validLogin(partnerName);
 
 
     // check practice name is correct 
-    // const practiceExisting = await page.locator("._practice_name_13kkp_123").textContent();
-    // console.log("existing practice = " + practiceExisting)
-    // console.log("practice name= " + practiceName)
-    // if(practiceExisting != practiceName){
-    //     await page.locator("._practice_name_13kkp_123").click();
-    //     const practiceNameList = await page.locator(".ant-collapse-content-active ._practice_name_13kkp_123").allTextContents();
-    //     console.log(practiceNameList[0])
-    //     console.log("result = "+practiceNameList.length);
-    //     console.log("result = "+practiceNameList);
-
-    //     await page.locator("._practice_name_13kkp_123:has-text('"+practiceName+"')").click();
-    // }
-
     await loginPage.checkPractice(practiceName);
 
-    await page.locator("._navbarItem_13kkp_199").getByText("Patients").click();
+    //Navigate to patients page
+    await loginPage.patientTabLoc.click();
 
-    await page.getByPlaceholder("Search Name ID").fill("Ave")
-    await page.locator("[name=' Carla Ave']").click()
+    await loginPage.patientSearchBox.fill("Ave")
+    await loginPage.patientNameDropdown.click()
 
 
 
