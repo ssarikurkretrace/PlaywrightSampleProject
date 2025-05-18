@@ -1,5 +1,7 @@
 const {test, expect, selectors} = require('@playwright/test');
 const {LoginPage} = require('../pageobjects/LoginPage');
+const {POManager} = require('../pageobjects/POManager');
+
 require('dotenv').config(); 
 
 test.only('Patients Page Test', async ({page}) => {
