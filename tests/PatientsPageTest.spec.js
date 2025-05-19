@@ -1,12 +1,14 @@
 const {test, expect, selectors} = require('@playwright/test');
-const {LoginPage} = require('../pageobjects/LoginPage');
 const {POManager} = require('../pageobjects/POManager');
 
 require('dotenv').config(); 
 
 test.only('Patients Page Test', async ({page}) => {
-    
-    const loginPage = new LoginPage(page);
+
+    const poManager = new POManager(page);
+    //js file- Login js, DashboardPage
+     const products = page.locator(".card-body");
+     const loginPage = poManager.getLoginPage();
 
     await loginPage.goTo();
     console.log(await page.title)
@@ -23,7 +25,8 @@ test.only('Patients Page Test', async ({page}) => {
     await loginPage.checkPractice(practiceName);
 
     //Navigate to patients page
-    await loginPage.patientTabLoc.click();
+    await loginPage.navigateToPage("Patients")
+    // await loginPage.patientTabLoc.click();
 
     //enter patient name
     await loginPage.patientSearchBox.fill("Ave")

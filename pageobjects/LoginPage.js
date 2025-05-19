@@ -44,5 +44,10 @@ class LoginPage {
 
     }
 
+    async navigateToPage(pageNameForNavigate){
+        const selectPage =this.page.locator("._navbarItem_13kkp_199").getByText(pageNameForNavigate);
+        await selectPage.click();
+    }
+
     }
     module.exports = {LoginPage};
