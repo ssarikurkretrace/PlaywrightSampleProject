@@ -45,9 +45,16 @@ class LoginPage {
     }
 
     async navigateToPage(pageNameForNavigate){
-        const selectPage =this.page.locator("._navbarItem_13kkp_199").getByText(pageNameForNavigate);
+        const selectPage =this.page.locator("._container_1qnps_1._titleHstack_13kkp_29").getByText(pageNameForNavigate);
         await selectPage.click();
     }
+
+
+    async navigateToDropdownPage(pageNameForNavigate){
+        const selectPage =this.page.locator("._container_1qnps_1._titleHstack_13kkp_29").getByRole('link', { name: 'Unsubmitted Claims' });
+        await selectPage.click();
+    }
+
 
     }
     module.exports = {LoginPage};

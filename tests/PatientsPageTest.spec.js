@@ -26,7 +26,13 @@ test.only('Patients Page Test', async ({page}) => {
 
     //Navigate to patients page
     await loginPage.navigateToPage("Patients")
+    // await loginPage.navigateToPage("Claims")
+    // await loginPage.navigateToDropdownPage("Unsubmitted Claims")
+
     // await loginPage.patientTabLoc.click();
+
+
+    // await loginPage.navigateToPage("Patients")
 
     //enter patient name
     await loginPage.patientSearchBox.fill("Ave")
