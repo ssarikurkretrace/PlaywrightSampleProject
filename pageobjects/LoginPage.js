@@ -41,7 +41,6 @@ class LoginPage {
     
             await this.page.locator("._practice_name_13kkp_123:has-text('"+practiceName+"')").click();
         }
-
     }
 
     async navigateToPage(pageNameForNavigate){
@@ -49,12 +48,10 @@ class LoginPage {
         await selectPage.click();
     }
 
-
     async navigateToDropdownPage(pageNameForNavigate){
         const selectPage =this.page.locator("._container_1qnps_1._titleHstack_13kkp_29").getByRole('link', { name: 'Unsubmitted Claims' });
         await selectPage.click();
     }
-
 
     }
     module.exports = {LoginPage};

@@ -8,8 +8,5 @@ class PatientsPage {
         this.patientNameDropdown =  page.locator("[name=' Carla Ave']")
     }
 
-
-
-
 }
 module.exports = {PatientsPage};

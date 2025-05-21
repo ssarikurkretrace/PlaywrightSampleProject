@@ -10,13 +10,11 @@ class POManager{
 
 }
 
-getLoginPage()
-{
+getLoginPage(){
     return this.loginPage;
 }
 
-getPatiensPage()
-{
+getPatiensPage(){
     return this.patientsPage;
 }
 
