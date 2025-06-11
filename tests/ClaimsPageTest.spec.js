@@ -3,7 +3,7 @@ const {POManager} = require('../pageobjects/POManager');
 
 require('dotenv').config(); 
 
-test.only('Patients Page Test', async ({page}) => {
+test.only('Claim Page Test', async ({page}) => {
 
     const poManager = new POManager(page);
     //js file- Login js, DashboardPage
@@ -25,14 +25,10 @@ test.only('Patients Page Test', async ({page}) => {
     await loginPage.checkPractice(practiceName);
 
     //Navigate to patients page
-    await loginPage.navigateToPage("Patients")
-    // await loginPage.navigateToPage("Claims")
-    // await loginPage.navigateToDropdownPage("Unsubmitted Claims")
-
-    // await loginPage.patientTabLoc.click();
-
-
     // await loginPage.navigateToPage("Patients")
+    await loginPage.navigateToPage("Claims")
+    await loginPage.navigateToDropdownPage("Unsubmitted Claims")
+
 
     //enter patient name
     await loginPage.patientSearchBox.fill("Ave")
