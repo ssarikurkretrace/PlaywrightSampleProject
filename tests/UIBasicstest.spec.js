@@ -52,9 +52,12 @@ await page.locator("[name=' Carla Ave']").click()
 await page.pause();
 
 // await page.pause();
-
-
 // select correct practice
+});
+
+test('Saucelab Simple Login Test', async ({page}) => {
+await page.goto (process.env.URLSauce);
+
 
 
 });

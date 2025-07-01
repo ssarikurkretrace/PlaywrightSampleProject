@@ -13,6 +13,9 @@ class LoginPage {
         this.patientTabLoc = page.locator("._navbarItem_13kkp_199").getByText("Patients");
         this.patientSearchBox = page.getByPlaceholder("Search Name ID")
         this.patientNameDropdown =  page.locator("[name=' Carla Ave']")
+
+        this.usernameSaucelab = page.getByPlaceholder("Username");
+        this.passwordSaucelab = page.getByPlaceholder("Password");
     }
     
     async goTo(){
