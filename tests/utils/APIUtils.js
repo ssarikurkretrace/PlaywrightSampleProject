@@ -2,9 +2,9 @@
 const { test, expect, request } = require('@playwright/test');
 class APIUtils {
 
-    constructor(apiContext, loginPayLoad) {
+    constructor(apiContext) {
         this.apiContext = apiContext;
-        this.loginPayLoad = loginPayLoad;
+        // this.loginPayLoad = loginPayLoad;
     }
 
     async generateToken() {

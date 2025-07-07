@@ -56,8 +56,8 @@ test('Get Pet with Petid With UtilClass', async () => {
         ignoreHTTPSErrors: true
     });
 
-    const apiUtils = new APIUtils(apiContext, loginPayLoad);
-    const petData = await apiUtils.getPetDataWithId(1);
+    const apiUtils = new APIUtils(apiContext);
+    const petData = await apiUtils.getPetDataWithId(2);
     console.log(petData);
 
 });
