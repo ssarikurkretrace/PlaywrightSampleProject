@@ -28,5 +28,36 @@ test('Generate Token', async () => {
 
 });
 
+test('Get Pet with Petid', async () => {
+
+    
+    const apiContext = await request.newContext({
+        ignoreHTTPSErrors: true
+    });
+
+    const petId = 1; // Replace with desired petId
+    const response = await apiContext.get(`https://petstore.swagger.io/v2/pet/${petId}`, {
+        headers: {
+            Accept: 'application/json'
+        }
+    });
+
+    expect(response.status()).toBe(200);
+
+    const json = await response.json();
+    console.log(json);
 
 
+
+});
+
+test('Get Pet with Petid With UtilClass', async () => {
+    const apiContext = await request.newContext({
+        ignoreHTTPSErrors: true
+    });
+
+    const apiUtils = new APIUtils(apiContext, loginPayLoad);
+    const petData = await apiUtils.getPetDataWithId(1);
+    console.log(petData);
+
+});

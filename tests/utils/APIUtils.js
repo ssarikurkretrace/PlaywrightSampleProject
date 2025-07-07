@@ -77,6 +77,21 @@ class APIUtils {
 
     }
 
+    async getPetDataWithId(petId) {
+        const response = await this.apiContext.get(`https://petstore.swagger.io/v2/pet/${petId}`, {
+            headers: {
+                Accept: 'application/json'
+            }
+        });
+
+        if (!response.ok()) {
+            throw new Error(`Request failed with status: ${response.status()}`);
+        }
+
+        const json = await response.json();
+        return json;
+    }
+
 
 
 
