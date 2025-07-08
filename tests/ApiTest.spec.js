@@ -29,7 +29,6 @@ test('Generate Token', async () => {
 });
 
 test('Get Pet with Petid', async () => {
-
     
     const apiContext = await request.newContext({
         ignoreHTTPSErrors: true
