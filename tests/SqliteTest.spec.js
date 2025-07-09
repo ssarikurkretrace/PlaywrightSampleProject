@@ -1,12 +1,21 @@
-const {test} = require ('@playwright/test');
+import { test } from '@playwright/test';
 require('dotenv').config();
-const  sqliteUtils = require('./utils/SqliteUtils').default;
+const db = require('./utils/SqliteUtils');
 
-test('Fetch data from SQLite', async () => {
-  await sqliteUtils.createConnection();
+async function testConnection() {
+    try {
+        await db.createConnection();
+        const artists = await db.runQuery('SELECT * FROM Artist LIMIT 5');
+        console.log(artists);
+        
+        const result = await db.runWriteQuery(
+            'INSERT INTO table (column) VALUES (?)', 
+            ['value']
+        );
+        console.log(result);
+    } finally {
+        await db.closeConnection();
+    }
+}
 
-  const results = await sqliteUtils.runQuery('SELECT * FROM patient WHERE PatNum = 1621', [1]);
-  console.log(results);
-
-  await sqliteUtils.closeConnection();
-});
+testConnection();
