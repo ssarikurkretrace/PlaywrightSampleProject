@@ -35,7 +35,8 @@ class SqliteUtils {
     const [rows] = await this.connection.execute(query, params);
     return rows;
 
-    
+
     }
 
 }
+module.exports = new SqliteUtils();
