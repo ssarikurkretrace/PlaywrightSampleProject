@@ -26,4 +26,16 @@ class SqliteUtils {
         });
     }
 
+    // ** runs a query on the connected DB.
+    async runQuery(query, params = []) {
+        if (!this.connection) {
+            throw new Error('Database connection is not established');
+        }
+
+    const [rows] = await this.connection.execute(query, params);
+    return rows;
+
+    
+    }
+
 }
