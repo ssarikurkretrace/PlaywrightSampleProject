@@ -1,10 +1,26 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+require('dotenv').config();
 
-// Remove the jdbc:sqlite: prefix if present in the env variable
-const dbPath = process.env.SQL_LITE ? 
-    process.env.SQL_LITE : 
-    ':memory:';
+const getDbPath = () => {
+  if (!process.env.SQLITE) {
+    throw new Error('SQLITE environment variable not set');
+  }
+  
+  // Remove jdbc: prefix if present and trim whitespace
+  let dbPath = process.env.SQLITE.trim().replace(/^jdbc:sqlite:/, '');
+  
+  // Handle relative paths by resolving from project root
+  if (!path.isAbsolute(dbPath)) {
+    dbPath = path.resolve(__dirname, '..', '..', dbPath);
+  }
+  
+  return dbPath;
+};
+
+const dbPath = getDbPath();
+console.log(`Database path resolved to: ${dbPath}`); // Debug output
+
 
 class SqliteUtils {
     constructor() {
