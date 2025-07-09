@@ -39,4 +39,4 @@ class SqliteUtils {
     }
 
 }
-module.exports = new SqliteUtils();
+export default new SqliteUtils();
