@@ -2,6 +2,17 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 require('dotenv').config();
 
+// Add to SqliteTest.js
+// console.log('ALL ENVIRONMENT VARIABLES:');
+// console.log(process.env);
+
+// console.log('Environment variables:', {
+//   SQLITE: process.env.SQLITE,
+//   SQL_LITE: process.env.SQL_LITE,
+//   url: process.env.URL,
+//   dotenvConfig: require('dotenv').config()
+// });
+
 const getDbPath = () => {
   if (!process.env.SQLITE) {
     throw new Error('SQLITE environment variable not set');
@@ -19,6 +30,7 @@ const getDbPath = () => {
 };
 
 const dbPath = getDbPath();
+// const dbPath = '/home/su/.local/share/DBeaverData/workspace6/.metadata/sample-database-sqlite-1/Chinook.db';
 console.log(`Database path resolved to: ${dbPath}`); // Debug output
 
 
