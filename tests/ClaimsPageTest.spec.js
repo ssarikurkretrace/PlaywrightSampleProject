@@ -3,7 +3,7 @@ const {POManager} = require('../pageobjects/POManager');
 
 require('dotenv').config(); 
 
-test.only('Claim Page Test', async ({page}) => {
+test('Claim Page Test', async ({page}) => {
 
     const poManager = new POManager(page);
     //js file- Login js, DashboardPage

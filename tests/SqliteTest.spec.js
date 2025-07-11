@@ -7,15 +7,12 @@ async function testConnection() {
         await db.createConnection();
         const artists = await db.runQuery('SELECT * FROM Artist LIMIT 5');
         console.log(artists);
-        
-        const result = await db.runWriteQuery(
-            'INSERT INTO table (column) VALUES (?)', 
-            ['value']
-        );
-        console.log(result);
+     
     } finally {
         await db.closeConnection();
     }
 }
 
-testConnection();
+test("Sqlite connection test", async () => {
+    await testConnection();
+});

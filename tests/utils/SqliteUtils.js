@@ -14,19 +14,20 @@ require('dotenv').config();
 // });
 
 const getDbPath = () => {
-  if (!process.env.SQLITE) {
-    throw new Error('SQLITE environment variable not set');
-  }
-  
-  // Remove jdbc: prefix if present and trim whitespace
-  let dbPath = process.env.SQLITE.trim().replace(/^jdbc:sqlite:/, '');
-  
-  // Handle relative paths by resolving from project root
-  if (!path.isAbsolute(dbPath)) {
-    dbPath = path.resolve(__dirname, '..', '..', dbPath);
-  }
-  
-  return dbPath;
+    // let dbPath = process.env.SQLITE;
+    // if (!dbPath) {
+    //     throw new Error('SQLITE environment variable not set');
+    // }
+
+    // Remove jdbc: prefix if present and trim whitespace
+    let dbPath = process.env.SQLITE.trim().replace(/^jdbc:sqlite:/, '');
+
+    // Handle relative paths by resolving from project root
+    if (!path.isAbsolute(dbPath)) {
+        dbPath = path.resolve(__dirname, '..', '..', dbPath);
+    }
+
+    return dbPath;
 };
 
 const dbPath = getDbPath();
@@ -90,7 +91,7 @@ class SqliteUtils {
         }
 
         return new Promise((resolve, reject) => {
-            this.db.run(query, params, function(err) {
+            this.db.run(query, params, function (err) {
                 if (err) {
                     reject(err);
                 } else {
