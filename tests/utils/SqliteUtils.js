@@ -20,7 +20,8 @@ const getDbPath = () => {
     // }
 
     // Remove jdbc: prefix if present and trim whitespace
-    let dbPath = process.env.SQLITE.trim().replace(/^jdbc:sqlite:/, '');
+    let dbPath = process.env.SQLITE;
+    console.log(`Raw SQLITE path: ${dbPath}`); // Debug output
 
     // Handle relative paths by resolving from project root
     if (!path.isAbsolute(dbPath)) {
