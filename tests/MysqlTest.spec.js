@@ -9,4 +9,5 @@ test('Fetch data from MySQL', async () => {
   console.log(results);
 
   await mysqlUtils.closeConnection();
+  test.expect(results.length).toBeGreaterThan(0);
 });
