@@ -10,4 +10,5 @@ test('Fetch data from MySQL', async () => {
 
   await mysqlUtils.closeConnection();
   test.expect(results.length).toBeGreaterThan(0);
+  test.expect(results[0].PatNum).toBe(1621);
 });
